@@ -34,6 +34,18 @@ void ensure_alg_properties_attempt_allocation(struct aws_cryptosdk_alg_propertie
     alg_props->alg_name = can_fail_malloc(alg_name_size);
 }
 
+void ensure_trace_has_allocated_records(struct aws_array_list *trace, size_t max_len){
+    /* iterate over each record in the keyring trace */
+    size_t num_records = aws_array_list_length(trace);
+    for (size_t idx = 0; idx < num_records; ++idx) {
+        struct aws_cryptosdk_keyring_trace_record *record;
+        if (!aws_array_list_get_at_ptr(trace, (void **)&record, idx)) {
+            /* make sure each record is valid */
+            ensure_record_has_allocated_members(record, max_len);
+        }
+    }
+}
+
 void ensure_md_context_has_allocated_members(struct aws_cryptosdk_md_context *ctx) {
     ctx->alloc      = nondet_bool() ? NULL : can_fail_allocator();
     ctx->evp_md_ctx = evp_md_ctx_nondet_alloc();
