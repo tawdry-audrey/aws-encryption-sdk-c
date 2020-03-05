@@ -30,7 +30,7 @@ void aws_cryptosdk_keyring_trace_clean_up_harness() {
     __CPROVER_assume(aws_cryptosdk_keyring_trace_is_valid(&trace));
 
     aws_cryptosdk_keyring_trace_clean_up(&trace);
-    assert(record.flags == 0);
-    assert(record.wrapping_key_name == NULL);
-    assert(record.wrapping_key_namespace == NULL);
+
+    /* assertions */
+    assert(aws_array_list_length(&trace) == 0);
 }

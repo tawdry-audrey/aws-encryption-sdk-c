@@ -24,6 +24,8 @@
 #include <proof_helpers/cryptosdk/make_common_data_structures.h>
 #include <proof_helpers/make_common_data_structures.h>
 #include <proof_helpers/proof_allocators.h>
+#include <aws/cryptosdk/keyring_trace.h>
+#include <aws/cryptosdk/private/keyring_trace.h>
 
 void ensure_alg_properties_attempt_allocation(struct aws_cryptosdk_alg_properties *const alg_props) {
     size_t md_name_size;
