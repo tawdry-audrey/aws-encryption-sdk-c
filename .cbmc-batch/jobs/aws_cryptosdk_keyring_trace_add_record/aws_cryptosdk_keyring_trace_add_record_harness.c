@@ -15,6 +15,7 @@
 
 #include <aws/common/array_list.h>
 #include <aws/common/string.h>
+#include <aws/common/assert.h>
 #include <aws/cryptosdk/keyring_trace.h>
 #include <aws/cryptosdk/private/keyring_trace.h>
 #include <aws/cryptosdk/private/utils.h>
