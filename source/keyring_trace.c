@@ -16,7 +16,9 @@
 #include <aws/cryptosdk/private/utils.h>
 
 bool aws_cryptosdk_keyring_trace_is_valid(struct aws_array_list *trace) {
-    AWS_OBJECT_PTR_IS_READABLE(trace);
+    if(trace == NULL){
+        return false;
+    }
     AWS_FATAL_PRECONDITION(trace->item_size == sizeof(struct aws_cryptosdk_keyring_trace_record));
     /* iterate over each record in the list */
     size_t num_records = aws_array_list_length(trace);
@@ -33,7 +35,9 @@ bool aws_cryptosdk_keyring_trace_is_valid(struct aws_array_list *trace) {
 }
 
 bool aws_cryptosdk_keyring_trace_record_is_valid(struct aws_cryptosdk_keyring_trace_record *record) {
-    AWS_OBJECT_PTR_IS_READABLE(record);
+    if(record == NULL){
+        return false;
+    }
     bool wk_namespace_is_valid = aws_string_is_valid(record->wrapping_key_namespace);
     bool wk_name_is_valid      = aws_string_is_valid(record->wrapping_key_name);
     return wk_namespace_is_valid && wk_name_is_valid;
@@ -100,7 +104,7 @@ static inline int push_record_onto_trace(
     struct aws_array_list *trace, struct aws_cryptosdk_keyring_trace_record *record) {
     int ret = aws_array_list_push_back(trace, (void *)record);
     if (ret) aws_cryptosdk_keyring_trace_record_clean_up(record);
-    AWS_POSTCONDITION(aws_cryptosdk_keyring_trace_is_valid(trace));
+    // TODO: check for post-conditions
     return ret;
 }
 
