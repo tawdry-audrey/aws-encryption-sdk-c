@@ -14,6 +14,7 @@
  */
 
 #include <aws/common/array_list.h>
+#include <aws/common/string.h>
 #include <aws/cryptosdk/private/keyring_trace.h>
 #include <make_common_data_structures.h>
 #include <proof_helpers/make_common_data_structures.h>
@@ -21,6 +22,9 @@
 void aws_cryptosdk_keyring_trace_record_clean_up_harness() {
     /* data structure */
     struct aws_cryptosdk_keyring_trace_record record; /* Precondition: record is non-null */
+
+    ensure_record_has_allocated_members(&record, MAX_STRING_LEN);
+    __CPROVER_assume(aws_cryptosdk_keyring_trace_record_is_valid(&record));
 
     aws_cryptosdk_keyring_trace_record_clean_up(&record);
     assert(record.flags == 0);

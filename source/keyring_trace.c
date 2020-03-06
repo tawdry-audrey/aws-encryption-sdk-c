@@ -36,8 +36,7 @@ bool aws_cryptosdk_keyring_trace_record_is_valid(struct aws_cryptosdk_keyring_tr
     AWS_OBJECT_PTR_IS_READABLE(record);
     bool wk_namespace_is_valid = aws_string_is_valid(record->wrapping_key_namespace);
     bool wk_name_is_valid      = aws_string_is_valid(record->wrapping_key_name);
-    bool flags_is_valid        = record->flags;
-    return wk_namespace_is_valid && wk_name_is_valid && flags_is_valid;
+    return wk_namespace_is_valid && wk_name_is_valid;
 }
 
 void aws_cryptosdk_keyring_trace_record_clean_up(struct aws_cryptosdk_keyring_trace_record *record) {

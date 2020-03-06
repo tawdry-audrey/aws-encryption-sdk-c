@@ -22,6 +22,7 @@ DEPENDENCIES +=	$(SRCDIR)/c-common-helper-src/proof_allocators.c
 DEPENDENCIES +=	$(SRCDIR)/c-common-src/byte_buf.c
 DEPENDENCIES +=	$(SRCDIR)/c-common-src/common.c
 DEPENDENCIES +=	$(SRCDIR)/c-common-src/error.c
+DEPENDENCIES +=	$(SRCDIR)/c-common-src/string.c
 DEPENDENCIES +=	$(SRCDIR)/c-enc-sdk-src/cipher.c
 DEPENDENCIES +=	$(SRCDIR)/c-enc-sdk-src/keyring_trace.c
 DEPENDENCIES += $(SRCDIR)/helper-src/make_common_data_structures.c
@@ -31,3 +32,4 @@ ENTRY = aws_cryptosdk_keyring_trace_record_clean_up_harness
 ###########
 
 include ../Makefile.common
+include ../Makefile.string
