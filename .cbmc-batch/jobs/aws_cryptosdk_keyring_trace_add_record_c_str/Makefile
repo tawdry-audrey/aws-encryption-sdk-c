@@ -16,8 +16,7 @@ include ../Makefile.aws_array_list
 include ../Makefile.aws_byte_buf
 include ../Makefile.string
 
-
-CBMC_UNWINDSET += --unwindset strlen.0:$(shell echo $$((1 + $(MAX_BUFFER_SIZE)))),aws_cryptosdk_keyring_trace_is_valid.0:$(shell echo $$((1 + $(MAX_ITEM_SIZE)))),ensure_trace_has_allocated_records.0:$(shell echo $$((1 + $(MAX_ITEM_SIZE))))
+CBMC_UNWINDSET += --unwindset aws_cryptosdk_keyring_trace_is_valid.0:$(shell echo $$((2 + $(MAX_ITEM_SIZE)))),ensure_trace_has_allocated_records.0:$(shell echo $$((1 + $(MAX_ITEM_SIZE)))),aws_string_new_from_array.0:$(shell echo $$((1 + $(MAX_STRING_LEN))))
 
 CBMCFLAGS +=
 

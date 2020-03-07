@@ -16,11 +16,15 @@ include ../Makefile.string
 include ../Makefile.aws_array_list
 include ../Makefile.aws_byte_buf
 
-CBMC_UNWINDSET += --unwindset aws_cryptosdk_keyring_trace_is_valid.0:$(shell echo $$((1 + $(MAX_ITEM_SIZE)))),ensure_trace_has_allocated_records.0:$(shell echo $$((1 + $(MAX_ITEM_SIZE))))
+CBMC_UNWINDSET += --unwindset aws_cryptosdk_keyring_trace_is_valid.0:$(shell echo $$((2 + $(MAX_ITEM_SIZE)))),ensure_trace_has_allocated_records.0:$(shell echo $$((1 + $(MAX_ITEM_SIZE)))),aws_string_new_from_array.0:$(shell echo $$((1 + $(MAX_STRING_LEN))))
 
 CBMCFLAGS +=
 
 ENTRY = aws_cryptosdk_keyring_trace_add_record_buf_harness
+
+ABSTRACTIONS += $(SRCDIR)/c-common-helper-stubs/aws_string_destroy_override.c
+ABSTRACTIONS += $(SRCDIR)/c-common-helper-stubs/aws_string_new_from_array_override.c
+ABSTRACTIONS += $(SRCDIR)/c-common-helper-stubs/error.c
 
 DEPENDENCIES +=	$(SRCDIR)/c-common-helper-src/make_common_data_structures.c
 DEPENDENCIES +=	$(SRCDIR)/c-common-helper-src/proof_allocators.c
