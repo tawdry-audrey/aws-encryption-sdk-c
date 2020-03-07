@@ -45,8 +45,8 @@ bool aws_cryptosdk_keyring_trace_record_is_valid(struct aws_cryptosdk_keyring_tr
 
 void aws_cryptosdk_keyring_trace_record_clean_up(struct aws_cryptosdk_keyring_trace_record *record) {
     AWS_FATAL_PRECONDITION(record != NULL);
-    AWS_FATAL_PRECONDITION(record->wrapping_key_name != NULL);
-    AWS_FATAL_PRECONDITION(record->wrapping_key_namespace != NULL);
+//    AWS_FATAL_PRECONDITION(record->wrapping_key_name != NULL);
+//    AWS_FATAL_PRECONDITION(record->wrapping_key_namespace != NULL);
     aws_string_destroy(record->wrapping_key_namespace);
     aws_string_destroy(record->wrapping_key_name);
     record->flags                  = 0;

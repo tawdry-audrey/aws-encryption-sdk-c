@@ -22,10 +22,6 @@ CBMCFLAGS +=
 
 ENTRY = aws_cryptosdk_keyring_trace_add_record_buf_harness
 
-ABSTRACTIONS += $(SRCDIR)/c-common-helper-stubs/aws_string_destroy_override.c
-ABSTRACTIONS += $(SRCDIR)/c-common-helper-stubs/aws_string_new_from_array_override.c
-ABSTRACTIONS += $(SRCDIR)/c-common-helper-stubs/error.c
-
 DEPENDENCIES +=	$(SRCDIR)/c-common-helper-src/make_common_data_structures.c
 DEPENDENCIES +=	$(SRCDIR)/c-common-helper-src/proof_allocators.c
 DEPENDENCIES +=	$(SRCDIR)/c-common-helper-src/utils.c
