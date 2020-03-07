@@ -38,8 +38,8 @@ bool aws_cryptosdk_keyring_trace_record_is_valid(struct aws_cryptosdk_keyring_tr
     if(record == NULL){
         return false;
     }
-    bool wk_namespace_is_valid = aws_string_is_valid(record->wrapping_key_namespace);
-    bool wk_name_is_valid      = aws_string_is_valid(record->wrapping_key_name);
+    bool wk_namespace_is_valid = (record->wrapping_key_namespace != NULL);
+    bool wk_name_is_valid      = (record->wrapping_key_name != NULL);
     return wk_namespace_is_valid && wk_name_is_valid;
 }
 
@@ -115,9 +115,9 @@ int aws_cryptosdk_keyring_trace_add_record(
     const struct aws_string *wk_name,
     uint32_t flags) {
     aws_allocator_is_valid(alloc);
-    AWS_OBJECT_PTR_IS_WRITABLE(trace);
-    AWS_OBJECT_PTR_IS_WRITABLE(wk_namespace);
-    AWS_OBJECT_PTR_IS_WRITABLE(wk_name);
+    assert(trace != NULL);
+    assert(wk_namespace != NULL);
+    assert(wk_name != NULL);
     AWS_FATAL_PRECONDITION(aws_cryptosdk_keyring_trace_is_valid(trace));
     AWS_FATAL_PRECONDITION(trace->item_size == sizeof(struct aws_cryptosdk_keyring_trace_record));
     struct aws_cryptosdk_keyring_trace_record record;
