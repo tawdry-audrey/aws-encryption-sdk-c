@@ -25,6 +25,9 @@ DEFINES += -DMAX_TABLE_SIZE=$(MAX_TABLE_SIZE)
 #A table has 10 words for the struct, plus 3 words for each entry
 TABLE_SIZE_IN_WORDS=$(shell echo $$(($$((3 * $(MAX_TABLE_SIZE))) + 10)))
 
+ABSTRACTIONS += $(SRCDIR)/c-common-helper-stubs/aws_string_destroy_override.c
+REMOVE_FUNCTION_BODIES += --remove-function-body aws_string_destroy
+
 UNWINDSET += aws_hash_table_clear.0:$(shell echo $$((1 + $(MAX_TABLE_SIZE))))
 UNWINDSET += memset_override_0_impl.0:$(shell echo $$((1 + $(TABLE_SIZE_IN_WORDS))))
 

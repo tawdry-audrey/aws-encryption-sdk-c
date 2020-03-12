@@ -19,7 +19,12 @@
 #include <proof_helpers/make_common_data_structures.h>
 #include <proof_helpers/proof_allocators.h>
 #include <proof_helpers/utils.h>
+#include <aws/cryptosdk/private/enc_ctx.h>
+#include <aws/cryptosdk/private/utils.h>
 
+//#include <aws/common/byte_buf.h>
+//#include <aws/common/common.h>
+//#include <aws/common/hash_table.h>
 /**
  * Prove the aws_cryptosdk_enc_ctx_clean_up function for the case
  * where the map has an implentation.  The case where the map.p_impl is

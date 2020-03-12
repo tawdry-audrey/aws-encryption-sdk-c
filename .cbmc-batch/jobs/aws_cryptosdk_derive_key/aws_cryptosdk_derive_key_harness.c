@@ -24,13 +24,13 @@ void aws_cryptosdk_derive_key_harness() {
     enum aws_cryptosdk_alg_id alg_id;
     struct aws_cryptosdk_alg_properties *props = aws_cryptosdk_alg_props(alg_id);
 
-    struct content_key *content_key = malloc(sizeof(content_key));
-    struct data_key *data_key       = malloc(sizeof(data_key));
-    uint8_t message_id;
+    struct content_key *content_key = malloc(sizeof(struct content_key));
+    struct data_key *data_key       = malloc(sizeof(struct data_key));
+    uint8_t message_id[MSG_ID_LEN];
 
     /* assumptions */
     __CPROVER_assume(props);
-    __CPROVER_assume(AWS_MEM_IS_WRITABLE(content_key->keybuf, sizeof(content_key->keybuf)));
+    __CPROVER_assume(AWS_MEM_IS_WRITABLE(content_key->keybuf, MAX_DATA_KEY_SIZE));
     __CPROVER_assume(AWS_MEM_IS_READABLE(message_id, MSG_ID_LEN));
 
     aws_cryptosdk_derive_key(props, content_key, data_key, &message_id);
